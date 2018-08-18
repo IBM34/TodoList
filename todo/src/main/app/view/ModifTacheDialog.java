@@ -1,6 +1,6 @@
-package view;
+package main.app.view;
 
-import model.*;
+import main.app.model.*;
 
 import java.awt.Color;
 import java.awt.Dimension;

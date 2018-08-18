@@ -1,4 +1,4 @@
-package view;
+package main.app.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import model.Bilan;
+import main.app.model.Bilan;
 
 public class BilanDialog extends JDialog{
 

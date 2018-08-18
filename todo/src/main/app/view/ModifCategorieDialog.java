@@ -1,4 +1,4 @@
-package view;
+package main.app.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import model.Categorie;
+import main.app.model.Categorie;
 
 public class ModifCategorieDialog extends JDialog implements ActionListener {
 

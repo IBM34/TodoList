@@ -1,4 +1,4 @@
-package model;
+package main.app.model;
 
 import java.util.Date;
 import java.util.Vector;

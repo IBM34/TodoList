@@ -1,4 +1,4 @@
-package view;
+package main.app.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-import model.Tache;
+import main.app.model.Tache;
 
 public class TachePanel extends JPanel{
 	

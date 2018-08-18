@@ -1,4 +1,4 @@
-package view;
+package main.app.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,7 +17,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.Categorie;
+import main.app.model.Categorie;
 
 public class ChoixCategorieDialog extends JDialog implements ActionListener {
 

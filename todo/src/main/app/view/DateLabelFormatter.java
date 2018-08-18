@@ -1,4 +1,4 @@
-package view;
+package main.app.view;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

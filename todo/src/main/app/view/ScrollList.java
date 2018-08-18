@@ -1,4 +1,4 @@
-package view;
+package main.app.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,7 +7,7 @@ import java.util.Vector;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import model.Tache;
+import main.app.model.Tache;
 
 public class ScrollList extends JPanel {
 	private static final long serialVersionUID = 1280674726919544137L;

@@ -1,13 +1,10 @@
-package controller;
+package main.app.controller;
 
-import model.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import main.app.model.*;
+
+import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Vector;
@@ -18,21 +15,24 @@ public class Controller {
 	protected ListeSimple lsimple = new ListeSimple();
 	protected ListeIntercale lintercale = new ListeIntercale();
 	protected ListeImportance limportance = new ListeImportance();
-	// fichier utilisé pour la sérialisation
-	File fichier = new File("todo.ser"); 
-	
-	/* ------ Fonction  qui s'occupe de la sérialisation de la partie model------*/
-	public void Serializer() throws FileNotFoundException, IOException {
+
+	/* ------ Fonction  qui s'occupe de la sérialisation de la partie main.app.model------*/
+	public void Serializer() throws FileNotFoundException, IOException, URISyntaxException {
 		// ouverture d'un flux sur un fichier
-		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier));
+		URL resourceUrl = getClass().getResource("/resources/todo.ser");
+		File file = new File(resourceUrl.toURI());
+		OutputStream output = new FileOutputStream(file);
+		ObjectOutputStream oos = new ObjectOutputStream(output);
 
 		// sérialization de l'objet
 		oos.writeObject(l);
 		oos.close();
 	}
-	/* ------ Fonction qui s'occupe de la désérialisation de la partie model ------*/
-	public void Deserializer() throws FileNotFoundException, IOException, ClassNotFoundException {
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichier));
+	/* ------ Fonction qui s'occupe de la désérialisation de la partie main.app.model ------*/
+	public void Deserializer() throws FileNotFoundException, IOException, ClassNotFoundException, URISyntaxException {
+        URL resourceUrl = getClass().getResource("/resources/todo.ser");
+        File file = new File(resourceUrl.toURI());
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
 		l = (Liste) ois.readObject();
 		ois.close();
 	}
@@ -40,7 +40,7 @@ public class Controller {
 	public Vector<Categorie> ListeCat() {
 		return l.getLcat().getCategories();
 	}
-	/* ------ Fonction qui apelle une methode du model pour créé une tâche en fonction de la catégorie choisie------*/
+	/* ------ Fonction qui apelle une methode du main.app.model pour créé une tâche en fonction de la catégorie choisie------*/
 	public void ChoixCat(int ind, int type, String titre, Date echeance, Date debut, int importance) throws ParseException {
 		l.getLcat().choixCategorie(ind, type, titre, echeance, debut, importance);
 	}

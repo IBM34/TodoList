@@ -1,6 +1,6 @@
-package view;
+package main.app.view;
 
-import controller.*;
+import main.app.controller.*;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.text.ParseException;
 
 import javax.swing.*;
@@ -19,7 +20,7 @@ import javax.swing.*;
 public class Fenetre extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 5172254850261170931L;
-	protected Controller control = new Controller(); //instance du controller
+	protected Controller control = new Controller(); //instance du main.app.controller
 	protected ChoixCategorieDialog choix;
 	protected CreerTacheDialog tache;
 	protected ModifCategorieDialog addcat;
@@ -44,7 +45,7 @@ public class Fenetre extends JFrame implements ActionListener {
 	protected int ind, ind2;
 	protected Font font = new Font("ubuntu", Font.BOLD, 14);
 
-	public Fenetre() throws FileNotFoundException, ClassNotFoundException, IOException, ParseException {
+	public Fenetre() throws FileNotFoundException, ClassNotFoundException, IOException, ParseException, URISyntaxException {
 		setTitle("ToDoList");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -134,12 +135,12 @@ public class Fenetre extends JFrame implements ActionListener {
 		itemCreerTache.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				choix = new ChoixCategorieDialog(null, "Creer une tâche", true);
-				choix.init(control.ListeCat()); // Actualisation du model et de la vue par le biais du controller
+				choix.init(control.ListeCat()); // Actualisation du main.app.model et de la vue par le biais du main.app.controller
 				if (choix.bool == true) {
 					try {
 						tache = new CreerTacheDialog(null, "Creer une tâche", true, choix.type);
 						if (tache.bool == true) {
-							// Actualisation du model et de la vue par le biais du controller
+							// Actualisation du main.app.model et de la vue par le biais du main.app.controller
 							control.ChoixCat(choix.ind, choix.type, tache.titretache, tache.echeance, tache.debut,tache.importance);
 							control.Retard();
 							actualiseListe();
@@ -150,7 +151,7 @@ public class Fenetre extends JFrame implements ActionListener {
 							initSurvol();
 							control.Serializer(); // sérialisation
 						}
-					} catch (ParseException | IOException e1) {
+					} catch (ParseException | IOException | URISyntaxException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
@@ -164,12 +165,12 @@ public class Fenetre extends JFrame implements ActionListener {
 				addcat = new ModifCategorieDialog(null, "Ajouter une catégorie", true);
 				addcat.initAjouter();
 				if (addcat.bool == true) {
-					// Actualisation du model par le biais du controller
+					// Actualisation du main.app.model par le biais du main.app.controller
 					control.AddCat(addcat.titrecat);
 				}
 				try {
 					control.Serializer();
-				} catch (FileNotFoundException e) {
+				} catch (FileNotFoundException | URISyntaxException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -182,10 +183,10 @@ public class Fenetre extends JFrame implements ActionListener {
 		itemRenommerCategorie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				RenameCat = new ModifCategorieDialog(null, "Renommer une catégorie", true);
-				// Actualisation du model et de la vue par le biais du controller
+				// Actualisation du main.app.model et de la vue par le biais du main.app.controller
 				RenameCat.initRenommer(control.ListeCat());
 				if (RenameCat.bool == true) {
-					// Actualisation du model par le biais du controller
+					// Actualisation du main.app.model par le biais du main.app.controller
 					control.RenameCat(RenameCat.ind, RenameCat.titrecat);
 				}
 				try {
@@ -201,7 +202,7 @@ public class Fenetre extends JFrame implements ActionListener {
 				initSurvol();
 				try {
 					control.Serializer();
-				} catch (FileNotFoundException e) {
+				} catch (FileNotFoundException | URISyntaxException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -231,7 +232,7 @@ public class Fenetre extends JFrame implements ActionListener {
 				initSurvol();
 				try {
 					control.Serializer();
-				} catch (FileNotFoundException e) {
+				} catch (FileNotFoundException | URISyntaxException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -256,7 +257,7 @@ public class Fenetre extends JFrame implements ActionListener {
 				}
 				try {
 					control.Serializer();
-				} catch (FileNotFoundException e) {
+				} catch (FileNotFoundException | URISyntaxException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -384,7 +385,7 @@ public class Fenetre extends JFrame implements ActionListener {
 							initModif();
 							try {
 								control.Serializer();
-							} catch (IOException e1) {
+							} catch (IOException | URISyntaxException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
@@ -446,7 +447,7 @@ public class Fenetre extends JFrame implements ActionListener {
 					initModif();
 					try {
 						control.Serializer();
-					} catch (IOException e1) {
+					} catch (IOException | URISyntaxException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
@@ -484,7 +485,7 @@ public class Fenetre extends JFrame implements ActionListener {
 						initModif();
 						try {
 							control.Serializer();
-						} catch (IOException e1) {
+						} catch (IOException | URISyntaxException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
@@ -513,7 +514,7 @@ public class Fenetre extends JFrame implements ActionListener {
 	}
 
 	public static void main(String args[])
-			throws FileNotFoundException, ClassNotFoundException, IOException, ParseException {
+			throws FileNotFoundException, ClassNotFoundException, IOException, ParseException, URISyntaxException {
 		Fenetre f = new Fenetre();
 		f.setVisible(true);
 		f.setLocationRelativeTo(null);
