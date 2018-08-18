@@ -4,37 +4,38 @@ import java.util.Vector;
 
 public class ListeSimple extends Liste {
 
-	private static final long serialVersionUID = 2707435313241096108L;
-	private Vector<Tache> listeTriee = new Vector<Tache>(); // contient la liste triée des tâches
-	Tache tacheTemp; // variable de tâche temporaire
-	int indice;
+    private static final long serialVersionUID = 2707435313241096108L;
+    private Vector<Tache> listeTriee = new Vector<>(); // contient la liste triée des tâches
+    private Tache tacheTemp; // variable de tâche temporaire
+    private int indice;
 
-	public ListeSimple() {
-		super();
-	}
-	/* ------- Fonction qui tri les tâches par ordre d'échéances croissantes -------*/
-	public void triTaches() {
-		while (!(getListe().isEmpty())) {
-			tacheTemp = getListe().elementAt(0);
-			indice = 0;
-			for (int i = 1; i < getListe().size(); i++) {
-				if ((getListe().elementAt(i).getEcheance()).before(tacheTemp.getEcheance())) {
-					tacheTemp = getListe().elementAt(i);
-					indice = i;
-				}
-			}
+    public ListeSimple() {
+        super();
+    }
 
-			getListeTriee().addElement(tacheTemp);
-			getListe().removeElementAt(indice);
-		}
-	}
+    /* ------- Fonction qui tri les tâches par ordre d'échéances croissantes -------*/
+    public void triTaches() {
+        while (!(getListe().isEmpty())) {
+            tacheTemp = getListe().elementAt(0);
+            indice = 0;
+            for (int i = 1; i < getListe().size(); i++) {
+                if ((getListe().elementAt(i).getEcheance()).before(tacheTemp.getEcheance())) {
+                    tacheTemp = getListe().elementAt(i);
+                    indice = i;
+                }
+            }
 
-	public Vector<Tache> getListeTriee() {
-		return listeTriee;
-	}
+            getListeTriee().addElement(tacheTemp);
+            getListe().removeElementAt(indice);
+        }
+    }
 
-	public void setListeTriee(Vector<Tache> listeTriee) {
-		this.listeTriee = listeTriee;
-	}
+    public Vector<Tache> getListeTriee() {
+        return listeTriee;
+    }
+
+    public void setListeTriee(Vector<Tache> listeTriee) {
+        this.listeTriee = listeTriee;
+    }
 
 }
