@@ -19,8 +19,7 @@ public class Controller {
     /* ------ Fonction  qui s'occupe de la sérialisation de la partie main.app.model------*/
     public void Serializer() throws IOException, URISyntaxException {
         // ouverture d'un flux sur un fichier
-        URL resourceUrl = getClass().getResource("/resources/todo.ser");
-        File file = new File(resourceUrl.toURI());
+        File file = new File("todo/src/main/resources/todo.ser");
         OutputStream output = new FileOutputStream(file);
         ObjectOutputStream oos = new ObjectOutputStream(output);
 
@@ -31,8 +30,7 @@ public class Controller {
 
     /* ------ Fonction qui s'occupe de la désérialisation de la partie main.app.model ------*/
     public void Deserializer() throws IOException, ClassNotFoundException, URISyntaxException {
-        URL resourceUrl = getClass().getResource("/resources/todo.ser");
-        File file = new File(resourceUrl.toURI());
+        File file = new File("todo/src/main/resources/todo.ser");
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
         l = (Liste) ois.readObject();
         ois.close();
